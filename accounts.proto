@@ -1,0 +1,50 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package account_service;
+
+message Account {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message ListAccountsRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+}
+
+message ListAccountsResponse {
+  repeated Account accounts = 1;
+  string next_page_token = 2;
+}
+
+message AuthenticateByEmailRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message CreateAccountRequest {
+  Account account = 1;
+  string password = 2;
+  // image_service.ImageStoreRequest image = 3;
+}
+
+message UpdateAccountRequest {
+  string id = 1;
+  string password = 2;
+  // image_service.ImageStoreRequest image = 3;
+  Account account = 4;
+}
+
+message DeleteAccountRequest {
+  string id = 1;
+}
+
+service AccountService {
+  rpc List (ListAccountsRequest) returns (ListAccountsResponse) {}
+  rpc AuthenticateByEmail (AuthenticateByEmailRequest) returns (Account) {}
+  rpc Create (CreateAccountRequest) returns (Account) {}
+  rpc Update (UpdateAccountRequest) returns (Account) {}
+  rpc Delete (DeleteAccountRequest) returns (google.protobuf.Empty) {}
+}

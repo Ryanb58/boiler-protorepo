@@ -1,0 +1,38 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package member_service;
+
+message Member {
+  string id = 1;
+  string group = 2;
+  string firstname = 3;
+  string lastname = 4;
+  string perfname = 5;
+  string email = 6;
+  string phone = 7;
+  string date_updated = 9;
+  string date_created = 10;
+  string author = 11;
+}
+
+message ListMembersRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+}
+
+message ListMembersResponse {
+  repeated PNM results = 1;
+  string next_page_token = 2;
+}
+
+message DeleteMemberRequest {
+  string id = 1;
+}
+
+service PNMService {
+    rpc List (ListMembersRequest) returns (ListMembersResponse) {}
+    rpc Create (Member) returns (Member) {}
+    rpc Update (Member) returns (Member) {}
+    rpc Delete (DeleteMemberRequest) returns (google.protobuf.Empty) {}
+  }
