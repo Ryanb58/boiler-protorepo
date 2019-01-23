@@ -1,8 +1,13 @@
 ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-OUTPUT_DIR := ./output
+OUTPUT_DIR := ./protos
 
 
-generate:
+clean-output:
+	rm -rf ${OUTPUT_DIR}
+	mkdir ${OUTPUT_DIR}
+
+
+generate: clean-output
 	docker run --rm -v `pwd`:`pwd` -w `pwd` znly/protoc --python_out=${OUTPUT_DIR} -I . *.proto
 
 	docker run --rm -v `pwd`:`pwd` -w `pwd` znly/protoc \
