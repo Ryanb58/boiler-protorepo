@@ -30,7 +30,7 @@ message DeleteMemberRequest {
   string id = 1;
 }
 
-service PNMService {
+service MemberService {
     rpc List (ListMembersRequest) returns (ListMembersResponse) {}
     rpc Create (Member) returns (Member) {}
     rpc Update (Member) returns (Member) {}
