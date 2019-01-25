@@ -39,7 +39,13 @@ message DeleteAccountRequest {
   string id = 1;
 }
 
+message GetByIDAccountsRequest {
+  string id = 1;
+}
+
+
 service AccountService {
+  rpc GetByID (GetByIDAccountsRequest) returns (Account) {}
   rpc List (ListAccountsRequest) returns (ListAccountsResponse) {}
   rpc AuthenticateByEmail (AuthenticateByEmailRequest) returns (Account) {}
   rpc Create (CreateAccountRequest) returns (Account) {}

@@ -16,13 +16,17 @@ message Contact {
   string author = 11;
 }
 
+message GetByIDContactsRequest {
+  string id = 1;
+}
+
 message ListContactsRequest {
   int32 page_size = 1;
   string page_token = 2;
 }
 
 message ListContactsResponse {
-  repeated Contact results = 1;
+  repeated Contact contacts = 1;
 }
 
 message DeleteContactRequest {
@@ -30,6 +34,7 @@ message DeleteContactRequest {
 }
 
 service ContactService {
+  rpc GetByID (GetByIDContactsRequest) returns (Contact) {}
   rpc List (ListContactsRequest) returns (ListContactsResponse) {}
   rpc Create (Contact) returns (Contact) {}
   rpc Update (Contact) returns (Contact) {}
