@@ -5,7 +5,7 @@ Used to define the structure of our micro services.
 
 #### Build the files.
 ```
-make generate
+make generate-python
 ```
 
 The results will be in `./output`.

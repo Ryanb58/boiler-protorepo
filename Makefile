@@ -7,7 +7,7 @@ clean-output:
 	mkdir ${OUTPUT_DIR}
 
 
-generate: clean-output
+generate-python: clean-output
 	docker run --rm -v `pwd`:`pwd` -w `pwd` znly/protoc --python_out=${OUTPUT_DIR} -I . *.proto
 
 	docker run --rm -v `pwd`:`pwd` -w `pwd` znly/protoc \
