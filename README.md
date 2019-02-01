@@ -8,4 +8,4 @@ Used to define the structure of our micro services.
 make generate-python
 ```
 
-The results will be in `./output`.
+The results will be in `./protos`.
